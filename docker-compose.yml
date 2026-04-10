@@ -1,0 +1,29 @@
+version: '3.8'
+
+#services:
+##  web:
+#    build: ./app
+#    container_name: app
+##    environment:
+#      - ENVIRONMENT=production
+#    expose:
+#      - "5000"
+
+services:
+  backend:
+    build: ./app
+    container_name: app
+    env_file:
+      - .env
+    expose:
+      - "5000"
+
+  nginx:
+    image: nginx:latest
+    container_name: proxy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
