@@ -26,5 +26,10 @@ COPY . .
 RUN adduser --disabled-password --gecos "" appuser && chown -R appuser /app
 USER appuser
 
+# --- ESTE ES EL BONUS 2 ---
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:5000/ || exit 1
+# --------------------------
+
 # EJECUCIÓN
 CMD ["python", "app.py"]
