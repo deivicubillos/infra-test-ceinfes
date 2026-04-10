@@ -1,3 +1,16 @@
+import logging
+from logging.handlers import RotatingFileHandler
+
+# Configuración de Logs Claros
+logging.basicConfig(
+    level=logging.INFO,
+    format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    handlers=[
+        RotatingFileHandler("logs/app.log", maxBytes=10000, backupCount=3),
+        logging.StreamHandler() # Esto permite verlos también con 'docker logs'
+    ]
+)
+
 from flask import Flask
 import os
 
