@@ -19,9 +19,9 @@ services:
       - "5000"
 ## Volumes ##
     volumes:
-      - ./logs:/app/logs
+      - ./logs:/app/logs    # <--- ESTO CONECTA LAS CARPETAS
 ## Gestion Logs Eficiente
-    logging:
+    logging:                # <--- ESTO LIMITA EL TAMAÑO DE LOGS
       driver: "json-file"
       options:
         max-size: "10m" # El archivo no pasará de 10MB
